@@ -1,0 +1,32 @@
+<div class="modal fade" id="<%- @css.getId() %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%- @css.abspath %></h4>
+      </div>
+      <div class="modal-body">
+        <pre>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>no</th>
+                <th>source</th>
+                <th>hit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for line in @css.getLines() : %>
+                <tr>
+                  <td><%- line.no %></td>
+                  <td class="<%- @css.getStyle(line.no) %>"><code class="css"><%- line.text %></td>
+                  <td class="<%- @css.getStyle(line.no) %>"><span class="badge"><%- @css.getHit(line.no) %></span></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>

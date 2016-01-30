@@ -1,0 +1,43 @@
+<head>
+  <title>Coverage</title>
+  <!-- jquery -->
+  <script src="assets/javascripts/jquery-2.2.0.min.js"></script>
+  <!-- jquery.dataTables -->
+  <link rel="stylesheet" href="assets/stylesheets/jquery.dataTables.min.css">
+  <script src="assets/javascripts/jquery.dataTables.min.js"></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="assets/stylesheets/bootstrap.min.css">
+  <script src="assets/javascripts/bootstrap.min.js"></script>
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="assets/stylesheets/github.min.css">
+  <script src="assets/javascripts/highlight.min.js"></script>
+  <!-- app -->
+  <link rel="stylesheet" href="assets/stylesheets/application.css">
+  <script src="assets/javascripts/application.js"></script>
+</head>
+<body>
+  <div class="container">
+    <table id="css-files" class="table">
+      <thead>
+        <tr>
+          <th>file</th>
+          <th>line</th>
+          <th>covered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for css in @cssFiles : %>
+          <tr>
+            <td><a href="#<%- css.getId() %>" data-toggle="modal" data-target="#<%- css.getId() %>"><%- css.abspath %></a></td>
+            <td><%- css.getLines().length %></td>
+            <td><%- css.getCovered() %> %</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% for css in @cssFiles : %>
+      <% include 'source.ect', { css: css } %>
+    <% end %>
+  </div>
+</body>
